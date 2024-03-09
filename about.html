@@ -14,7 +14,7 @@
             // Mevcut URL'yi al
             var currentUrl = window.location.href;
             // Eğer URL .html uzantısını içeriyorsa ve index.html değilse, yeni URL'ye yönlendir
-            if (currentUrl.endsWith('.html') && currentUrl.indexOf('about.html') === -1) {
+            if (currentUrl.endsWith('.html') && currentUrl.indexOf('index.html') === -1) {
                 var newUrl = currentUrl.slice(0, -5); // .html uzantısını kaldır
                 window.location.replace(newUrl); // Yeni URL'ye yönlendir
             }
