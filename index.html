@@ -10,6 +10,18 @@
     <meta name="author" content="Sevket Nurlu">
     <title>Kubai Code Co.</title>
     <script>
+            // JavaScript ile URL'yi yeniden yazma
+            window.onload = function() {
+                // Mevcut URL'yi al
+                var currentUrl = window.location.href;
+                // Eğer URL .html uzantısını içeriyorsa ve index.html değilse, yeni URL'ye yönlendir
+                if (currentUrl.endsWith('.html') && currentUrl.indexOf('index.html') === -1) {
+                    var newUrl = currentUrl.slice(0, -5); // .html uzantısını kaldır
+                    window.location.replace(newUrl); // Yeni URL'ye yönlendir
+                }
+            };
+        </script>
+    <script>
     // JavaScript ile URL'yi yeniden yazma
     window.onload = function() {
         var currentUrl = window.location.href;
