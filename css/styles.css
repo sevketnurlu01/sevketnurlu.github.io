@@ -1,5 +1,14 @@
 @charset "UTF-8";
 
+
+@media (max-width: 1400px) {
+  #teklif {
+    display: none;
+  }
+}
+
+
+
 .navbar{
   width: 100%; 
   z-index: 1;
