@@ -4,7 +4,7 @@ RewriteRule ^([^/]+)/$ $1.html
 RewriteRule ^([^/]+)/([^/]+)/$ /$1/$2.html
 RewriteCond %{index} !-f
 RewriteCond %{index} !-d
-RewriteCond %{https://kubaicode.com/anasayfa} !(\.[a-zA-Z0-9]{1,5}|/)$
+RewriteCond %{https://www.kubaicode.com/anasayfa} !(\.[a-zA-Z0-9]{1,5}|/)$
 RewriteRule (.*)$ /$1/ [R=301,L]
 
 
