@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+.logo-link {
+    display: inline-block;
+}
+
+.logo-image {
+    width: 45px; /* Resmin genişliğini istediğiniz gibi ayarlayabilirsiniz */
+    height: auto; /* Otomatik yükseklik */
+}
 
 @media (max-width: 1400px) {
   #teklif {
