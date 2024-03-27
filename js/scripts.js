@@ -1,4 +1,4 @@
-//40.99669573536972,29.019627519704144
+//41.021541642668744, 29.020215404934692
 // Kullanıcının konum izni istenir
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(activateQRLink, handleLocationError);
@@ -20,7 +20,7 @@ function activateQRLink(position) {
     var distance = calculateDistance(userLatitude, userLongitude, targetLatitude, targetLongitude);
 
     // Eğer kullanıcı hedef konumun 20 metre çapı içinde değilse belirli bir bağlantıya erişim engellenir
-    var threshold = 0.02; // 20 metrelik eşik değer (bu değer uygulamaya göre değiştirilebilir)
+    var threshold = 0.1; // 20 metrelik eşik değer (bu değer uygulamaya göre değiştirilebilir)
     if (distance > threshold) {
         // Kullanıcı hedef konumun 20 metre çapı içinde değil, bu yüzden belirli bir bağlantıya erişim engellenir
         console.log("Hedef konumun 20 metre çapı içinde değilsiniz. Erişim engellendi.");
