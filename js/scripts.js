@@ -1,57 +1,54 @@
-/*!
-* Start Bootstrap - Modern Business v5.0.7 (https://startbootstrap.com/template-overviews/modern-business)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-modern-business/blob/master/LICENSE)
-*/
-// This file is intentionally blank
-// Use this file to add JavaScript to your project
-const loadText = document.querySelector('.loading-text')
-const bg = document.querySelector('.bg')
+// Kullanıcının konum izni istenir
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(activateQRLink, handleLocationError);
+} else {
+    console.log("Konum servisi desteklenmiyor.");
+}
 
-let load = 0
+// Konum alındıktan sonra QR kod bağlantısını aktive eden fonksiyon
+function activateQRLink(position) {
+    // Örnek olarak, belirli bir koordinat (latitude ve longitude) tanımlanır
+    var targetLatitude = 41.02154705395299; // Örnek bir enlem değeri
+    var targetLongitude = 29.020239003354593; // Örnek bir boylam değeri
 
-let int = setInterval(blurring, 10)
+    // Kullanıcının konumu alınır
+    var userLatitude = position.coords.latitude;
+    var userLongitude = position.coords.longitude;
 
-function blurring() {
-    load++
-    if (load > 99) {
-        clearInterval(int)
+    // Hesaplanan konum ile hedef konum arasındaki uzaklık hesaplanır (örneğin, mesafe hesaplama algoritmaları kullanılabilir)
+    var distance = calculateDistance(userLatitude, userLongitude, targetLatitude, targetLongitude);
+
+    // Belirli bir eşik değeriyle kontrol edilir ve eğer hedef konuma yakınsa QR kod bağlantısı aktive edilir
+    var threshold = 0.1; // Örnek bir eşik değeri (bu değer metrekare cinsindendir ve uygulamaya göre değiştirilebilir)
+    if (distance <= threshold) {
+        // QR kod bağlantısı burada aktive edilir
+        var qrLink = "https://kubaicode.com/contact.html"; // Örnek bir QR kod bağlantısı
+        window.location.href = qrLink; // Tarayıcıyı QR kod bağlantısına yönlendir
+    } else {
+        console.log("Hedef konuma yakın değilsiniz.");
     }
-    loadText.innerText = `${load}%`
-
-    loadText.style.opacity = scale(load, 0, 100, 1, 0)
-
-    bg.style.filter = `blur(${scale(load, 0, 100, 30, 0)}px)`
-
 }
 
-const scale = (num, in_min, in_max, out_min, out_max) => {
-    return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+// Konum erişiminde hata oluştuğunda çağrılacak olan fonksiyon
+function handleLocationError(error) {
+    console.error("Konum alınamadı: ", error);
 }
 
+// İki nokta arasındaki mesafeyi hesaplayan fonksiyon (örneğin, Haversine formülü kullanılabilir)
+function calculateDistance(lat1, lon1, lat2, lon2) {
+    var R = 6371; // Dünya'nın yarıçapı (km)
+    var dLat = deg2rad(lat2 - lat1);
+    var dLon = deg2rad(lon2 - lon1);
+    var a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var distance = R * c; // Mesafe km cinsindendir
+    return distance;
+}
 
-
-/*sayfaların yüklenme animasyonu*/
-$(document).ready(function() {
-    
-    /* Every time the window is scrolled ... */
-    $(window).scroll( function(){
-    
-        /* Check the location of each desired element */
-        $('.hideme').each( function(i){
-            
-            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
-            var bottom_of_window = $(window).scrollTop() + $(window).height();
-            
-            /* If the object is completely visible in the window, fade it it */
-            if( bottom_of_window > bottom_of_object ){
-                
-                $(this).animate({'opacity':'1'},500);
-                    
-            }
-            
-        }); 
-    
-    });
-    
-});
+// Dereceyi radyana dönüştüren yardımcı fonksiyon
+function deg2rad(deg) {
+    return deg * (Math.PI / 180);
+}
