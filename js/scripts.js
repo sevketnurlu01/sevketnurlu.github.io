@@ -9,8 +9,8 @@ if (navigator.geolocation) {
 // Konum alındıktan sonra QR kod bağlantısını aktive eden fonksiyon
 function activateQRLink(position) {
     // Örnek olarak, hedef konumun koordinatları tanımlanır
-    var targetLatitude = 40.9966; // Hedef konumun enlem değeri
-    var targetLongitude = 29.0196; // Hedef konumun boylam değeri
+    var targetLatitude = 41.0215; // Hedef konumun enlem değeri
+    var targetLongitude = 29.0202; // Hedef konumun boylam değeri
 
     // Kullanıcının konumu alınır
     var userLatitude = position.coords.latitude;
