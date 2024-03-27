@@ -25,7 +25,7 @@ function activateQRLink(position) {
         // Kullanıcı hedef konumun 20 metre çapı içinde değil, bu yüzden belirli bir bağlantıya erişim engellenir
         console.log("Hedef konumun 20 metre çapı içinde değilsiniz. Erişim engellendi.");
         // Engellenen bağlantıya yönlendirme veya başka bir işlem burada yapılabilir.
-        window.location.href = "https://www.kubaicode.com/contact.html"; // Örnek olarak engellenen bağlantıya yönlendirme
+        window.location.href = "https://www.kubaicode.com/"; // Örnek olarak engellenen bağlantıya yönlendirme
     } else {
         // Kullanıcı hedef konumun 20 metre çapı içinde olduğu için QR kod bağlantısı aktive edilir
         console.log("Hedef konumun 20 metre çapı içindesiniz. QR kod bağlantısı aktive ediliyor...");
