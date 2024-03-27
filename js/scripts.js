@@ -1,3 +1,4 @@
+//40.99669573536972,29.019627519704144
 // Kullanıcının konum izni istenir
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(activateQRLink, handleLocationError);
@@ -7,25 +8,28 @@ if (navigator.geolocation) {
 
 // Konum alındıktan sonra QR kod bağlantısını aktive eden fonksiyon
 function activateQRLink(position) {
-    // Örnek olarak, belirli bir koordinat (latitude ve longitude) tanımlanır
-    var targetLatitude = 40.99669573536972; // Örnek bir enlem değeri
-    var targetLongitude = 29.019627519704144; // Örnek bir boylam değeri
+    // Örnek olarak, hedef konumun koordinatları tanımlanır
+    var targetLatitude = 40.9966; // Hedef konumun enlem değeri
+    var targetLongitude = 29.0196; // Hedef konumun boylam değeri
 
     // Kullanıcının konumu alınır
     var userLatitude = position.coords.latitude;
     var userLongitude = position.coords.longitude;
 
-    // Hesaplanan konum ile hedef konum arasındaki uzaklık hesaplanır (örneğin, mesafe hesaplama algoritmaları kullanılabilir)
+    // Hedef konum ile kullanıcının konumu arasındaki mesafe hesaplanır
     var distance = calculateDistance(userLatitude, userLongitude, targetLatitude, targetLongitude);
 
-    // Belirli bir eşik değeriyle kontrol edilir ve eğer hedef konuma yakınsa QR kod bağlantısı aktive edilir
-    var threshold = 0.1; // Örnek bir eşik değeri (bu değer metrekare cinsindendir ve uygulamaya göre değiştirilebilir)
-    if (distance <= threshold) {
-        // QR kod bağlantısı burada aktive edilir
-        var qrLink = "https://kubaicode.com/contact.html"; // Örnek bir QR kod bağlantısı
-        window.location.href = qrLink; // Tarayıcıyı QR kod bağlantısına yönlendir
+    // Eğer kullanıcı hedef konumun 20 metre çapı içinde değilse belirli bir bağlantıya erişim engellenir
+    var threshold = 0.02; // 20 metrelik eşik değer (bu değer uygulamaya göre değiştirilebilir)
+    if (distance > threshold) {
+        // Kullanıcı hedef konumun 20 metre çapı içinde değil, bu yüzden belirli bir bağlantıya erişim engellenir
+        console.log("Hedef konumun 20 metre çapı içinde değilsiniz. Erişim engellendi.");
+        // Engellenen bağlantıya yönlendirme veya başka bir işlem burada yapılabilir.
+        window.location.href = "https://www.kubaicode.com/contact"; // Örnek olarak engellenen bağlantıya yönlendirme
     } else {
-        console.log("Hedef konuma yakın değilsiniz.");
+        // Kullanıcı hedef konumun 20 metre çapı içinde olduğu için QR kod bağlantısı aktive edilir
+        console.log("Hedef konumun 20 metre çapı içindesiniz. QR kod bağlantısı aktive ediliyor...");
+        // QR kod bağlantısının aktive edilmesi veya başka bir işlem burada yapılabilir.
     }
 }
 
@@ -50,5 +54,5 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 
 // Dereceyi radyana dönüştüren yardımcı fonksiyon
 function deg2rad(deg) {
-    return deg * (Math.PI / 180);
+    return deg * (Math.PI / 180);
 }
