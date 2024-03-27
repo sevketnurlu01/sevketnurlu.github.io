@@ -22,7 +22,7 @@ function activateQRLink(position) {
     var threshold = 0.1; // Örnek bir eşik değeri (bu değer metrekare cinsindendir ve uygulamaya göre değiştirilebilir)
     if (distance <= threshold) {
         // QR kod bağlantısı burada aktive edilir
-        var qrLink = "https://kubaicode.com/contact.html"; // Örnek bir QR kod bağlantısı
+        var qrLink = "https://kubaicode.com/contact"; // Örnek bir QR kod bağlantısı
         window.location.href = qrLink; // Tarayıcıyı QR kod bağlantısına yönlendir
     } else {
         console.log("Hedef konuma yakın değilsiniz.");
